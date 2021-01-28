@@ -101,6 +101,7 @@ export default {
     const editor = new E("#edit");
     editor.create();
     if (this.$route.query.id != undefined) {
+      this.$route.meta.item = "修改商品";
       this.$API.detail(this.$route.query.id).then((res) => {
         // console.log(res);
         this.form.name = res.data.name;
@@ -126,6 +127,8 @@ export default {
           });
         });
       });
+    } else {
+      this.$route.meta.item = "添加商品";
     }
     this.$API.category(0).then((res) => {
       // console.log(res);
@@ -135,6 +138,8 @@ export default {
         name: "请选择一级品类",
       });
     });
+    document.getElementsByClassName("w-e-toolbar")[0].style.zIndex = 11;
+    document.getElementsByClassName("w-e-text-container")[0].style.zIndex = 11;
   },
   methods: {
     onChange(val) {

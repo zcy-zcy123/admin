@@ -38,7 +38,7 @@
           </el-menu>
         </el-aside>
         <el-main>
-          <MyComponent/>
+          <MyComponent />
           <router-view />
         </el-main>
       </el-container>
@@ -55,9 +55,13 @@ export default {
   methods: {
     // 退出
     exit() {
-      this.$router.push("/");
-      localStorage.removeItem("userInfo");
-      this.$message("退出成功");
+      this.$API.exit().then((res) => {
+        console.log(res);
+        if (res.status == 0) {
+          this.$router.push("/");
+          this.$message("退出成功");
+        }
+      });
     },
   },
 };

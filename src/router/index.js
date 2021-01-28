@@ -70,13 +70,39 @@ const routes = [
           item: '修改商品',
         }
       },
+      {
+        path: 'order_detail',
+        name: 'order_detail',
+        component: () => import('../views/home/order_detail.vue'),
+        meta: {
+          header: true,
+          title: '订单详情',
+        }
+      },
+      {
+        path: 'classify_id',
+        name: 'classify_id',
+        component: () => import('../views/home/classify_id.vue'),
+        meta: {
+          header: true,
+          title: '品类管理',
+        }
+      },
+      {
+        path: 'classify_add',
+        name: 'classify_add',
+        component: () => import('../views/home/classify_add.vue'),
+        meta: {
+          header: false,
+          title: '品类管理',
+          item: '添加品类'
+        }
+      },
     ]
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
   routes
 })
 

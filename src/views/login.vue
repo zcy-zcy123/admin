@@ -65,10 +65,7 @@ export default {
   padding: 30px 20px;
   border: 1px solid gainsboro;
   border-radius: 5px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  margin: 150px auto;
   h3 {
     margin-bottom: 20px;
     display: flex;

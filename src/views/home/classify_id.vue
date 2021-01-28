@@ -5,13 +5,10 @@
     <el-table :data="list" border stripe style="width: 100%">
       <el-table-column prop="id" label="品类ID" width="200"> </el-table-column>
       <el-table-column prop="name" label="品类名称"> </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="300">
         <template slot-scope="scope">
           <el-button type="text" size="small" @click="set(scope.row)"
             >修改名称</el-button
-          >
-          <el-button type="text" size="small" @click="get(scope.row.id)"
-            >查看其子品类</el-button
           >
         </template>
       </el-table-column>
@@ -43,7 +40,8 @@ export default {
     };
   },
   mounted() {
-    this.$API.category(this.id).then((res) => {
+    this.id = this.$route.query.id;
+    this.$API.category(this.$route.query.id).then((res) => {
       // console.log(res);
       this.list = res.data;
     });
@@ -71,10 +69,6 @@ export default {
           });
         }
       });
-    },
-    // 查看
-    get(id) {
-      this.$router.push({ path: "/home/classify_id", query: { id } });
     },
   },
 };
