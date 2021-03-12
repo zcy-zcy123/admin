@@ -10,7 +10,6 @@ export const api = {
   setShop: '/manage/product/save.do',//修改商品
   setCategory: '/manage/category/set_category_name.do',//修改品类
   addCategory: '/manage/category/add_category.do',//添加品类
-
   order: '/manage/order/list.do',//订单列表
   order_search: '/manage/order/search.do',//订单搜索
   order_detail: '/manage/order/detail.do',//订单详情

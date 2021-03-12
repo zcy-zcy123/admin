@@ -67,8 +67,7 @@
         </el-upload>
       </el-form-item>
       <el-form-item label="商品详情">
-        <div id="edit" v-if="show"></div>
-        <div v-html="form.detail" v-else></div>
+        <div id="edit"></div>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -99,7 +98,7 @@ export default {
   },
   mounted() {
     const editor = new E("#edit");
-    editor.create();
+    editor.config.zIndex = 11;
     if (this.$route.query.id != undefined) {
       this.$route.meta.item = "修改商品";
       this.$API.detail(this.$route.query.id).then((res) => {
@@ -112,12 +111,8 @@ export default {
         this.form.value = res.data.parentCategoryId;
         this.form.value1 = res.data.categoryId;
         this.form.detail = res.data.detail;
-        this.form.imgs = res.data.imageHost + res.data.mainImage;
-        if (res.data.detail == "") {
-          this.show = true;
-        } else {
-          this.show = false;
-        }
+        editor.txt.html(this.form.detail);
+        this.form.imgs = res.data.mainImage;
         this.$API.category(res.data.parentCategoryId).then((res) => {
           // console.log(res);
           this.option1 = res.data;
@@ -138,8 +133,11 @@ export default {
         name: "请选择一级品类",
       });
     });
-    document.getElementsByClassName("w-e-toolbar")[0].style.zIndex = 11;
-    document.getElementsByClassName("w-e-text-container")[0].style.zIndex = 11;
+    let that = this;
+    editor.config.onchange = function (newHtml) {
+      that.form.detail = newHtml;
+    };
+    editor.create();
   },
   methods: {
     onChange(val) {

@@ -19,7 +19,6 @@ export default {
     getShop(ids, name, title, img, detail, price, num, status) { return request(METHOD.GET, api.setShop + `?categoryId=${ids}&name=${name}&subtitle=${title}&subImages=${img}&detail=${detail}&price=${price}&stock=${num}&status=${status}`) },//添加商品
     setCategory(id, name) { return request(METHOD.GET, api.setCategory + `?categoryId=${id}&categoryName=${name}`) },//修改品类
     addCategory(id, name) { return request(METHOD.GET, api.addCategory + `?parentId=${id}&categoryName=${name}`) },//添加品类
-
     order(page) { return request(METHOD.GET, api.order + `?pageNum=${page}`) },//订单列表
     order_search(name) { return request(METHOD.GET, api.order_search + `?listType=search&pageNum=1&orderNo=${name}`) },//订单搜索
     order_detail(id) { return request(METHOD.GET, api.order_detail + `?orderNo=${id}`) },//订单详情

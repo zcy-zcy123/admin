@@ -5,12 +5,10 @@ import { Loading } from 'element-ui';
 
 // 根据环境不同引入不同baseApi地址
 import { baseApi } from '../../config/index'
-console.log(baseApi)
 
 const axiosRequest = axios.create({
     baseURL: baseApi,
     timeout: 10000,
-    withCredentials: true,
 })
 
 export function request(method, url, params) {
